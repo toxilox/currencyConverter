@@ -23,4 +23,14 @@ class CurrenciesController extends Controller
 
       return view('currencies.index', compact('currencies'));
     }
+
+    public function updateCurrencies(Request $request)
+    {
+      // TODO Store $request to DB
+
+
+      $currencies = Currency::all();
+
+      return view('currencies.index', compact('currencies'));
+    }
 }

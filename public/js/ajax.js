@@ -15,7 +15,6 @@ $(document).ready(function(){
             type: "POST",
             url: url,
             success: function (data) {
-                // console.log(data);
 
                 $(".currency_row").remove();
             },
@@ -31,10 +30,17 @@ $(document).ready(function(){
         dataType: 'json',
         url: 'https://openexchangerates.org/api/currencies.json',
         success: function (data) {
+
           var obj = data;
           for (var key in obj){
-            console.log(key);
+            if (obj.hasOwnProperty(key)) {
+              var val = obj[key];
+              console.log(key);
+              console.log(val);
+            }
           }
+
+          // TODO make some kind of PUT request that's routed to the CurrenciesController
         },
         error: function (data) {
             console.log('Error:', data);
