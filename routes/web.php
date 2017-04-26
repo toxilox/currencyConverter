@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CurrenciesController@index');
+
+Route::post('/', 'CurrenciesController@truncate');
