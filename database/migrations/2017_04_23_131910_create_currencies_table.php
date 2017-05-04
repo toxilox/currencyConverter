@@ -19,9 +19,9 @@ class CreateCurrenciesTable extends Migration
             $table->string('name', 255);
             $table->dateTime('date_created');
             $table->dateTime('date_modified');
-            //$table->float('rate'); this becomes a DOUBLE field instead of a FLOAT
+            //$table->float('rate'); Could use this but rate will be a DOUBLE field instead of a FLOAT
         });
-        DB::statement('ALTER TABLE `currencies` ADD `rate` FLOAT NOT NULL');
+        DB::statement('ALTER TABLE `currencies` ADD `rate` FLOAT NOT NULL'); // Alter table to ensure FLOAT
     }
 
     /**

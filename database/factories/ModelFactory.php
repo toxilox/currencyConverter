@@ -24,13 +24,10 @@
 // });
 
 $factory->define(App\Currency::class, function (Faker\Generator $faker) {
-  //static $password;
 
   return [
     'iso_4217' => $faker->unique()->currencyCode,
     'name' => $faker->unique()->country,
-    'date_created' => $faker->dateTime($max = 'now'),
-    'date_modified' => $faker->dateTime($max = 'now'),
     'rate' => $faker->randomFloat(4, 0, 20),
   ];
 });

@@ -13,5 +13,5 @@
 
 Route::get('/', 'CurrenciesController@index');
 
-Route::post('/', 'CurrenciesController@truncate');
-Route::put('/', 'CurrenciesController@updateCurrencies');
+Route::post('/clear-currencies', 'CurrenciesController@truncate');
+Route::post('/update-currencies', 'CurrenciesController@updateCurrencies');

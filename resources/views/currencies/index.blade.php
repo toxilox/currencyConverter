@@ -5,22 +5,22 @@
   <h1>Currency Converter</h1>
   <div>
 
-    <select>
+    <select id="currency_from" class="currencyConvert">
       <option value="">Select a currency:</option>
       @foreach ($currencies as $currency)
-        <option value="{{ $currency->iso_4217 }}">{{ $currency->iso_4217 }}</option>
+        <option class="{{ $currency->iso_4217 }} currencyOption" value="{{ $currency->iso_4217 }}">{{ $currency->iso_4217 }}</option>
       @endforeach
     </select>
 
-    <input type="text" name="value" value="0"/>
+    <input id="currency_amount" class="currencyConvert" type="number" value="0"/>
 
-    <select>
+    <select id="currency_to" class="currencyConvert">
       <option value="">Select a currency:</option>
       @foreach ($currencies as $currency)
-        <option value="{{ $currency->iso_4217 }}">{{ $currency->iso_4217 }}</option>
+        <option class="{{ $currency->iso_4217 }} currencyOption" value="{{ $currency->iso_4217 }}">{{ $currency->iso_4217 }}</option>
       @endforeach
     </select>
-
+    <span id="result"></span>
   </div>
   <div>
     <button id="update_currencies" class="btn btn-primary btn-xs">Update Currencies</button>
@@ -28,7 +28,7 @@
   </div>
 
   <div>
-    <table class="table">
+    <table id="currency_table" class="table">
       <tr>
         <th>ISO 4217</th>
         <th>Name</th>
@@ -38,12 +38,12 @@
       </tr>
 
       @foreach ($currencies as $currency)
-      <tr class="currency_row">
+      <tr class="currencyRow">
         <td>{{ $currency->iso_4217 }}</td>
         <td>{{ $currency->name }}</td>
         <td>{{ $currency->date_created }}</td>
         <td>{{ $currency->date_modified }}</td>
-        <td>{{ $currency->rate }}</td>
+        <td class="{{ $currency->iso_4217 . '_rate' }}">{{ $currency->rate }}</td>
       </tr>
     @endforeach
 

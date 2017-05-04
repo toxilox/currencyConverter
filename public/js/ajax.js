@@ -2,7 +2,6 @@ $(document).ready(function(){
 
     var url = "/";
 
-    //send POST request to url and clear the currency table from rows
     $('#truncate').click(function(){
         $.ajaxSetup({
             headers: {
@@ -13,10 +12,11 @@ $(document).ready(function(){
         $.ajax({
 
             type: "POST",
-            url: url,
+            url: url + 'clear-currencies',
             success: function (data) {
 
-                $(".currency_row").remove();
+                $(".currencyRow").remove();
+                $(".currencyOption").remove();
             },
             error: function (data) {
                 console.log('Error:', data);
@@ -24,27 +24,38 @@ $(document).ready(function(){
         });
     });
 
+
     $('#update_currencies').click(function(){
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
 
       $.ajax({
-        dataType: 'json',
-        url: 'https://openexchangerates.org/api/currencies.json',
-        success: function (data) {
 
-          var obj = data;
-          for (var key in obj){
-            if (obj.hasOwnProperty(key)) {
-              var val = obj[key];
-              console.log(key);
-              console.log(val);
-            }
+          type: "POST",
+          url: url + 'update-currencies',
+          success: function (data) {
+            $(".currency_row").remove();
+            $.each(data, function(i, item) {
+              $('.currencyConvert').append($('<option>', {
+                value: item.iso_4217,
+                text : item.iso_4217,
+                class : item.iso_4217 + 'currencyOption'
+              }));
+              var $tr = $('<tr>').addClass("currency_row").append(
+              $('<td>').text(item.iso_4217),
+              $('<td>').text(item.name),
+              $('<td>').text(item.date_created),
+              $('<td>').text(item.date_modified),
+              $('<td>').addClass(item.iso_4217 + "_rate").text(item.rate)
+            ).appendTo('#currency_table');
+            });
+          },
+          error: function (data) {
+              console.log('Error:', data);
           }
-
-          // TODO make some kind of PUT request that's routed to the CurrenciesController
-        },
-        error: function (data) {
-            console.log('Error:', data);
-        }
       });
     });
 });
