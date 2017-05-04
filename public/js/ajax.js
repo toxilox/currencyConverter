@@ -19,7 +19,7 @@ $(document).ready(function(){
                 $(".currencyOption").remove();
             },
             error: function (data) {
-                console.log('Error:', data);
+                alert('Error: ', data.status + ' - ' + data.statusText);
             }
         });
     });
@@ -37,14 +37,15 @@ $(document).ready(function(){
           type: "POST",
           url: url + 'update-currencies',
           success: function (data) {
-            $(".currency_row").remove();
+            $(".currencyRow").remove();
+            $(".currencyOption").remove();
             $.each(data, function(i, item) {
               $('.currencyConvert').append($('<option>', {
                 value: item.iso_4217,
                 text : item.iso_4217,
-                class : item.iso_4217 + 'currencyOption'
+                class : item.iso_4217 + ' currencyOption'
               }));
-              var $tr = $('<tr>').addClass("currency_row").append(
+              var $tr = $('<tr>').addClass("currencyRow").append(
               $('<td>').text(item.iso_4217),
               $('<td>').text(item.name),
               $('<td>').text(item.date_created),
@@ -54,7 +55,7 @@ $(document).ready(function(){
             });
           },
           error: function (data) {
-              console.log('Error:', data);
+            alert("Could not retrieve new currency data: " + data.status + ' - ' + data.statusText);
           }
       });
     });

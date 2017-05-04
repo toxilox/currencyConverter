@@ -37,9 +37,9 @@ class CurrenciesController extends Controller
         $currency = Currency::where('iso_4217', $key)->first();
         if (!$currency) {
           $currency = new Currency;
-        }
-        $currency->iso_4217 = $key;
-        $currency->name = 'Not available';
+          $currency->iso_4217 = $key;
+          $currency->name = 'Not available';
+        }        
         $currency->rate = $value;
         $currency->save();
       }
