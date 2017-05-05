@@ -17,7 +17,7 @@ class CurrencyTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        // $this->assertTrue(true);
 
         $response = $this->get('/');
         $response->assertStatus(200);

@@ -10,11 +10,9 @@ $(document).ready(function(){
         });
 
         $.ajax({
-
             type: "POST",
             url: url + 'clear-currencies',
             success: function (data) {
-
                 $(".currencyRow").remove();
                 $(".currencyOption").remove();
             },
@@ -33,7 +31,6 @@ $(document).ready(function(){
       });
 
       $.ajax({
-
           type: "POST",
           url: url + 'update-currencies',
           success: function (data) {

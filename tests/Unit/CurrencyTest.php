@@ -15,8 +15,16 @@ class CurrencyTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
-
-        
+        // $this->assertTrue(true);
     }
+
+    // public function testCanCreateCurrency(): void
+    // {
+    //     $currency = factory(\App\Currency::class)->create();
+    //
+    //     $this->assertInstanceOf(
+    //         Currency::class,
+    //         $currency
+    //     );
+    // }
 }
