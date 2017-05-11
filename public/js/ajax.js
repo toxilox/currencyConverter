@@ -13,6 +13,8 @@ $(document).ready(function(){
             type: "POST",
             url: url + 'clear-currencies',
             success: function (data) {
+              // $('#currencyTable').html(data);
+
                 $(".currencyRow").remove();
                 $(".currencyOption").remove();
             },
@@ -34,6 +36,7 @@ $(document).ready(function(){
           type: "POST",
           url: url + 'update-currencies',
           success: function (data) {
+            // $('#currencyTable').html(data);
             $(".currencyRow").remove();
             $(".currencyOption").remove();
             $.each(data, function(i, item) {
